@@ -20,6 +20,10 @@ body {
   margin-bottom: 0;
 }
 
+.jumbotron .lead {
+  font-weight: bold;
+}
+
 .footer {
   background-image: url("./footer.svg");
   padding-top: 3em;
@@ -30,4 +34,8 @@ body {
   border: 1px solid #0e4168;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
+}
+
+.card a {
+  color: inherit;
 }
