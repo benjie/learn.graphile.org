@@ -76,7 +76,6 @@ const IndexPage = () => (
                 }
               `}
               render={data => {
-                console.log(data);
                 const docs = data.docs.edges
                   .filter(edge => edge.node.relativePath.endsWith('.pdf'))
                   .map(edge => {
@@ -104,7 +103,6 @@ const IndexPage = () => (
                       mdx,
                     };
                   });
-                console.log(docs);
                 return docs.map(doc => {
                   const href = `/docs/${encodeURIComponent(doc.relativePath)}`;
                   return (
