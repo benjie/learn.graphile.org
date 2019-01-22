@@ -33,6 +33,7 @@
     "deploy": "gatsby build && gh-pages -d public -b master",
     "start": "npm run develop",
     "convert-svgs": "cd src/images; for I in *.svg; do rm \"$I.png\"; gm convert -size 2000x2000 -background none \"$I\" \"$I.png\"; done",
+    "convert-pdfs": "cd static/docs; for I in *.pdf; do if [ ! -f \"${I/.pdf/.png}\" ]; then gm convert -density 200 -size 2000x -background none \"$I\" -resize 2000x -crop 2000x1500+0+0 \"${I/.pdf/.png}\"; fi; done",
     "format": "prettier --write \"src/**/*.js\"",
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
   },
