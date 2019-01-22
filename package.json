@@ -28,6 +28,7 @@
     "develop": "gatsby develop",
     "deploy": "gatsby build && gh-pages -d public -b master",
     "start": "npm run develop",
+    "convert-svgs": "cd src/images; for I in *.svg; do rm \"$I.png\"; gm convert -size 2000x2000 -background none \"$I\" \"$I.png\"; done",
     "format": "prettier --write \"src/**/*.js\"",
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
   },
