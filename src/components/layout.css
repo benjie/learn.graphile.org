@@ -20,10 +20,6 @@ body {
   margin-bottom: 0;
 }
 
-.jumbotron .lead {
-  font-weight: bold;
-}
-
 .footer {
   background-image: url("./footer.svg");
   padding-top: 3em;
