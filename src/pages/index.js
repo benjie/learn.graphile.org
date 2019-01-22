@@ -15,8 +15,8 @@ const IndexPage = () => (
     <main role="main">
       <section class="jumbotron text-center">
         <div class="container">
-          <h1 class="jumbotron-heading">Learn PostGraphile</h1>
-          <p class="lead text-muted">
+          <h1 class="jumbotron-heading">Learn with PostGraphile</h1>
+          <p class="lead">
             PostGraphile helps you bring together the power of PostgreSQL with
             the flexibility and ease-of-use of GraphQL. On this site you'll find
             a number of learning resources to help you on your journey.
@@ -34,7 +34,7 @@ const IndexPage = () => (
           </p>
         </div>
       </section>
-      <div class="album py-5 bg-light" id="resources">
+      <div class="album py-5" id="resources">
         <div class="container">
           <div class="row">
             <StaticQuery
@@ -101,15 +101,17 @@ const IndexPage = () => (
                   return (
                     <div class="col-md-6 mt-5" key={doc.relativePath}>
                       <div class="card mb-6 box-shadow">
-                        {doc.image ? (
-                          <Img fluid={doc.image.fluid} class="card-img-top" />
-                        ) : (
-                          <img
-                            class="card-img-top"
-                            src={'http://placekitten.com/600/400'}
-                            alt="PDF preview"
-                          />
-                        )}
+                        <div class="card-image">
+                          {doc.image ? (
+                            <Img fluid={doc.image.fluid} class="card-img-top" />
+                          ) : (
+                            <img
+                              class="card-img-top"
+                              src={'http://placekitten.com/600/400'}
+                              alt="PDF preview"
+                            />
+                          )}
+                        </div>
                         <div class="card-body">
                           <h3>{doc.name.replace(/_/g, ' ')}</h3>
                           <p class="card-text">
@@ -144,16 +146,19 @@ const IndexPage = () => (
       </div>
     </main>
 
-    <footer class="text-muted">
+    <footer class="footer">
       <div class="container">
         <p class="float-right">
           <a href="#">Back to top</a>
         </p>
+        <p>These learning resources are copyright &copy; 2019 Graphile Ltd.</p>
         <p>
-          These learning resources are copyright &copy; 2019 Graphile Ltd.
-          Graphile Ltd is a limited company registered in England and Wales,
-          company number: 11171700, registered address: Tremain House, 8 Maple
-          Drive, Kings Worthy, Winchester, Hampshire, SO23 7NG, United Kingdom.
+          <small>
+            Graphile Ltd is a limited company registered in England and Wales,
+            company number: 11171700, registered address: Tremain House, 8 Maple
+            Drive, Kings Worthy, Winchester, Hampshire, SO23 7NG, United
+            Kingdom.
+          </small>
         </p>
       </div>
     </footer>

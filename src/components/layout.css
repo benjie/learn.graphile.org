@@ -1,0 +1,33 @@
+body {
+  background-image: url("./graphile-delaunay.png");
+  background-size: 1000px 1000px;
+  background-repeat: repeat;
+}
+
+.jumbotron, .footer {
+  background-size: 100% 100%;
+  background-position: 50% 0%;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border-radius: 0;
+  box-sizing: border-box;
+  color: white;
+}
+
+.jumbotron {
+  background-image: url("./header.svg");
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.footer {
+  background-image: url("./footer.svg");
+  padding-top: 3em;
+  padding-bottom: 2em;
+}
+
+.card-image {
+  border: 1px solid #0e4168;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
