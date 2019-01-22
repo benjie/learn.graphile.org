@@ -109,7 +109,7 @@ const IndexPage = () => (
                   const href = `/docs/${encodeURIComponent(doc.relativePath)}`;
                   return (
                     <div class="col-md-6" key={doc.relativePath}>
-                      <div class="card mb-6 box-shadow">
+                      <div class="card my-3 box-shadow">
                         <div class="card-image">
                           <a href={href}>
                             {doc.image ? (
