@@ -1,37 +1,17 @@
-import React from 'react'
-import { Link } from 'gatsby'
+import React from 'react';
+import { Link } from 'gatsby';
 
-import Layout from '../components/layout'
-import Image from '../components/image'
-import SEO from '../components/seo'
+import Layout from '../components/layout';
+import Image from '../components/image';
+import SEO from '../components/seo';
 
 const IndexPage = () => (
   <Layout>
-    <SEO title="Learn GraphQL, PostgreSQL and PostGraphile" keywords={['graphql', 'postgresql', 'postgraphile', 'graphile engine']} />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
-)
-
-export default IndexPage
-
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Learn GraphQL, PostgreSQL and PostGraphile</title>
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous"
+    <SEO
+      title="Learn GraphQL, PostgreSQL and PostGraphile"
+      keywords={['graphql', 'postgresql', 'postgraphile', 'graphile engine']}
     />
-  </head>
-  <body>
+
     <main role="main">
       <section class="jumbotron text-center">
         <div class="container">
@@ -42,14 +22,15 @@ export default IndexPage
             a number of learning resources to help you on your journey.
           </p>
           <p>
-            <a href="#resources" class="btn btn-primary my-2"
-              >View learning resources</a
-            >
+            <a href="#resources" class="btn btn-primary my-2">
+              View learning resources
+            </a>
             <a
               href="https://graphile.org/postgraphile/"
               class="btn btn-secondary my-2"
-              >Visit PostGraphile</a
             >
+              Visit PostGraphile
+            </a>
           </p>
         </div>
       </section>
@@ -71,9 +52,7 @@ export default IndexPage
                     together. It also demonstrates how to send a request to a
                     GraphQL API over HTTP.
                   </p>
-                  <div
-                    class="d-flex justify-content-between align-items-center"
-                  >
+                  <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                       <button
                         type="button"
@@ -82,7 +61,7 @@ export default IndexPage
                         Download
                       </button>
                     </div>
-                    <small class="text-muted"></small>
+                    <small class="text-muted" />
                   </div>
                 </div>
               </div>
@@ -103,9 +82,7 @@ export default IndexPage
                     accessible to non-programmers. This cheatsheet is a
                     reference for the terminology and how it is used.
                   </p>
-                  <div
-                    class="d-flex justify-content-between align-items-center"
-                  >
+                  <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                       <button
                         type="button"
@@ -114,7 +91,7 @@ export default IndexPage
                         Download
                       </button>
                     </div>
-                    <small class="text-muted"></small>
+                    <small class="text-muted" />
                   </div>
                 </div>
               </div>
@@ -136,9 +113,7 @@ export default IndexPage
                     operate on. Learn about how you can increase your
                     application security with RLS in this infosheet.
                   </p>
-                  <div
-                    class="d-flex justify-content-between align-items-center"
-                  >
+                  <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                       <button
                         type="button"
@@ -147,7 +122,7 @@ export default IndexPage
                         Download
                       </button>
                     </div>
-                    <small class="text-muted"></small>
+                    <small class="text-muted" />
                   </div>
                 </div>
               </div>
@@ -159,7 +134,9 @@ export default IndexPage
 
     <footer class="text-muted">
       <div class="container">
-        <p class="float-right"><a href="#">Back to top</a></p>
+        <p class="float-right">
+          <a href="#">Back to top</a>
+        </p>
         <p>
           These learning resources are copyright &copy; 2019 Graphile Ltd.
           Graphile Ltd is a limited company registered in England and Wales,
@@ -168,5 +145,7 @@ export default IndexPage
         </p>
       </div>
     </footer>
-  </body>
-</html>
+  </Layout>
+);
+
+export default IndexPage;
