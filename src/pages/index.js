@@ -12,7 +12,7 @@ const IndexPage = () => (
       keywords={['graphql', 'postgresql', 'postgraphile', 'graphile engine']}
     />
 
-    <main role="main">
+    <main role="main" id="top">
       <section class="jumbotron text-center">
         <div class="container">
           <h1 class="jumbotron-heading">Learn with PostGraphile</h1>
@@ -161,7 +161,7 @@ const IndexPage = () => (
     <footer class="footer">
       <div class="container">
         <p class="float-right">
-          <a href="#">Back to top</a>
+          <a href="#top">Back to top</a>
         </p>
         <p>These learning resources are copyright &copy; 2019 Graphile Ltd.</p>
         <p>
