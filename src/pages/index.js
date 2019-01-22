@@ -1,9 +1,8 @@
 import React from 'react';
-import { Link } from 'gatsby';
-
 import Layout from '../components/layout';
-import Image from '../components/image';
 import SEO from '../components/seo';
+import { StaticQuery } from 'gatsby';
+import Img from 'gatsby-image';
 
 const IndexPage = () => (
   <Layout>
@@ -37,96 +36,84 @@ const IndexPage = () => (
       <div class="album py-5 bg-light" id="resources">
         <div class="container">
           <div class="row">
-            <div class="col-md-6">
-              <div class="card mb-6 box-shadow">
-                <img
-                  class="card-img-top"
-                  src="http://placekitten.com/600/400"
-                  alt="Card image cap"
-                />
-                <div class="card-body">
-                  <h3>GraphQL Request Cheatsheet</h3>
-                  <p class="card-text">
-                    This cheatsheet is a quick reference to the names of the
-                    different parts of a GraphQL request and how they fit
-                    together. It also demonstrates how to send a request to a
-                    GraphQL API over HTTP.
-                  </p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-outline-secondary"
-                      >
-                        Download
-                      </button>
+            <StaticQuery
+              query={graphql`
+                query {
+                  docs: allFile(
+                    filter: {
+                      sourceInstanceName: { eq: "docs" }
+                      relativePath: { glob: "*.{pdf,pdf.png}" }
+                    }
+                    sort: { fields: [relativePath] }
+                  ) {
+                    edges {
+                      node {
+                        name
+                        relativePath
+                        absolutePath
+                        childImageSharp {
+                          fluid(maxWidth: 800) {
+                            ...GatsbyImageSharpFluid
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              `}
+              render={data => {
+                console.log(data);
+                const docs = data.docs.edges
+                  .filter(edge => edge.node.relativePath.endsWith('.pdf'))
+                  .map(edge => {
+                    const { node } = edge;
+                    const imageEdge = data.docs.edges.find(
+                      edge =>
+                        edge.node.relativePath === node.relativePath + '.png'
+                    );
+                    const image = imageEdge
+                      ? imageEdge.node.childImageSharp
+                      : null;
+                    return {
+                      ...node,
+                      image,
+                    };
+                  });
+                console.log(docs);
+                return docs.map(doc => {
+                  return (
+                    <div class="col-md-6" key={doc.relativePath}>
+                      <div class="card mb-6 box-shadow">
+                        {doc.image ? (
+                          <Img fluid={doc.image.fluid} class="card-img-top" />
+                        ) : (
+                          <img
+                            class="card-img-top"
+                            src={'http://placekitten.com/600/400'}
+                            alt="PDF preview"
+                          />
+                        )}
+                        <div class="card-body">
+                          <h3>{doc.name.replace(/_/g, ' ')}</h3>
+                          <p class="card-text">TODO!</p>
+                          <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                              <button
+                                type="button"
+                                class="btn btn-sm btn-outline-secondary"
+                              >
+                                Download
+                              </button>
+                            </div>
+                            <small class="text-muted" />
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <small class="text-muted" />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-6">
-              <div class="card mb-6 box-shadow">
-                <img
-                  class="card-img-top"
-                  src="http://placekitten.com/g/600/400"
-                  alt="Card image cap"
-                />
-                <div class="card-body">
-                  <h3>GraphQL Schema Definition Language Cheatsheet</h3>
-                  <p class="card-text">
-                    GraphQL Schema Definition Language (SDL) enables teams to
-                    discuss the design of a GraphQL API using shared terminology
-                    accessible to non-programmers. This cheatsheet is a
-                    reference for the terminology and how it is used.
-                  </p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-outline-secondary"
-                      >
-                        Download
-                      </button>
-                    </div>
-                    <small class="text-muted" />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-6">
-              <div class="card mb-6 box-shadow">
-                <img
-                  class="card-img-top"
-                  src="http://placekitten.com/600/402"
-                  alt="Card image cap"
-                />
-                <div class="card-body">
-                  <h3>PostgreSQL Row-Level Security Infosheet</h3>
-                  <p class="card-text">
-                    In 2015, PostgreSQL introduced a granular security
-                    technology, Row Level Security, in which policies containing
-                    SQL expression dictate which rows the current user may
-                    operate on. Learn about how you can increase your
-                    application security with RLS in this infosheet.
-                  </p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-outline-secondary"
-                      >
-                        Download
-                      </button>
-                    </div>
-                    <small class="text-muted" />
-                  </div>
-                </div>
-              </div>
-            </div>
+                  );
+                });
+              }}
+            />
           </div>
         </div>
       </div>
