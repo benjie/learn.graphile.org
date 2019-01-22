@@ -18,20 +18,28 @@ const IndexPage = () => (
           <h1 class="jumbotron-heading">Learn with PostGraphile</h1>
           <p class="lead">
             PostGraphile helps you bring together the power of PostgreSQL with
-            the flexibility and ease-of-use of GraphQL. On this site you'll find
-            a number of learning resources to help you on your journey.
+            the flexibility and ease-of-use of GraphQL.
+            <br />
+            On this site you'll find a number of learning resources to help you
+            on your journey.
           </p>
-          <p>
-            <a href="#resources" class="btn btn-primary my-2">
-              View learning resources
-            </a>
-            <a
-              href="https://graphile.org/postgraphile/"
-              class="btn btn-secondary my-2"
-            >
-              Visit PostGraphile
-            </a>
-          </p>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-4 offset-md-2">
+                <a href="#resources" class="btn btn-primary m-3 w-100">
+                  View learning resources
+                </a>
+              </div>
+              <div class="col-md-4">
+                <a
+                  href="https://graphile.org/postgraphile/"
+                  class="btn btn-outline-primary m-3 w-100"
+                >
+                  Visit PostGraphile
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
       <div class="album py-5" id="resources">
@@ -98,22 +106,30 @@ const IndexPage = () => (
                   });
                 console.log(docs);
                 return docs.map(doc => {
+                  const href = `/docs/${encodeURIComponent(doc.relativePath)}`;
                   return (
-                    <div class="col-md-6 mt-5" key={doc.relativePath}>
+                    <div class="col-md-6" key={doc.relativePath}>
                       <div class="card mb-6 box-shadow">
                         <div class="card-image">
-                          {doc.image ? (
-                            <Img fluid={doc.image.fluid} class="card-img-top" />
-                          ) : (
-                            <img
-                              class="card-img-top"
-                              src={'http://placekitten.com/600/400'}
-                              alt="PDF preview"
-                            />
-                          )}
+                          <a href={href}>
+                            {doc.image ? (
+                              <Img
+                                fluid={doc.image.fluid}
+                                class="card-img-top"
+                              />
+                            ) : (
+                              <img
+                                class="card-img-top"
+                                src={'http://placekitten.com/600/400'}
+                                alt="PDF preview"
+                              />
+                            )}
+                          </a>
                         </div>
                         <div class="card-body">
-                          <h3>{doc.name.replace(/_/g, ' ')}</h3>
+                          <h3>
+                            <a href={href}>{doc.name.replace(/_/g, ' ')}</a>
+                          </h3>
                           <p class="card-text">
                             {doc.mdx ? (
                               <MDXRenderer>{doc.mdx.code.body}</MDXRenderer>
@@ -125,9 +141,7 @@ const IndexPage = () => (
                             <div class="btn-group">
                               <a
                                 class="btn btn-sm btn-outline-secondary"
-                                href={`/docs/${encodeURIComponent(
-                                  doc.relativePath
-                                )}`}
+                                href={href}
                               >
                                 Download
                               </a>
