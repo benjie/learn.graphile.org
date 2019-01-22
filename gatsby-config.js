@@ -18,10 +18,12 @@ module.exports = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'docs',
-        path: `${__dirname}/src/docs`,
+        path: `${__dirname}/static/docs`,
       },
     },
     'gatsby-transformer-sharp',
+    'gatsby-transformer-pdf',
+    'gatsby-mdx',
     'gatsby-plugin-sharp',
     {
       resolve: 'gatsby-plugin-manifest',

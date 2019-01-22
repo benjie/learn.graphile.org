@@ -3,6 +3,7 @@ import Layout from '../components/layout';
 import SEO from '../components/seo';
 import { StaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
+import { MDXRenderer } from 'gatsby-mdx';
 
 const IndexPage = () => (
   <Layout>
@@ -42,7 +43,7 @@ const IndexPage = () => (
                   docs: allFile(
                     filter: {
                       sourceInstanceName: { eq: "docs" }
-                      relativePath: { glob: "*.{pdf,pdf.png}" }
+                      relativePath: { glob: "*.{pdf,png,mdx}" }
                     }
                     sort: { fields: [relativePath] }
                   ) {
@@ -56,6 +57,11 @@ const IndexPage = () => (
                             ...GatsbyImageSharpFluid
                           }
                         }
+                        childMdx {
+                          code {
+                            body
+                          }
+                        }
                       }
                     }
                   }
@@ -67,22 +73,33 @@ const IndexPage = () => (
                   .filter(edge => edge.node.relativePath.endsWith('.pdf'))
                   .map(edge => {
                     const { node } = edge;
+                    const basename = node.relativePath.substr(
+                      0,
+                      node.relativePath.length - 4
+                    );
+
                     const imageEdge = data.docs.edges.find(
-                      edge =>
-                        edge.node.relativePath === node.relativePath + '.png'
+                      ({ node }) => node.relativePath === basename + '.png'
                     );
                     const image = imageEdge
                       ? imageEdge.node.childImageSharp
                       : null;
+
+                    const mdxEdge = data.docs.edges.find(
+                      ({ node }) => node.relativePath === basename + '.mdx'
+                    );
+                    const mdx = mdxEdge ? mdxEdge.node.childMdx : null;
+
                     return {
                       ...node,
                       image,
+                      mdx,
                     };
                   });
                 console.log(docs);
                 return docs.map(doc => {
                   return (
-                    <div class="col-md-6" key={doc.relativePath}>
+                    <div class="col-md-6 mt-5" key={doc.relativePath}>
                       <div class="card mb-6 box-shadow">
                         {doc.image ? (
                           <Img fluid={doc.image.fluid} class="card-img-top" />
@@ -95,15 +112,23 @@ const IndexPage = () => (
                         )}
                         <div class="card-body">
                           <h3>{doc.name.replace(/_/g, ' ')}</h3>
-                          <p class="card-text">TODO!</p>
+                          <p class="card-text">
+                            {doc.mdx ? (
+                              <MDXRenderer>{doc.mdx.code.body}</MDXRenderer>
+                            ) : (
+                              ''
+                            )}
+                          </p>
                           <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                              <button
-                                type="button"
+                              <a
                                 class="btn btn-sm btn-outline-secondary"
+                                href={`/docs/${encodeURIComponent(
+                                  doc.relativePath
+                                )}`}
                               >
                                 Download
-                              </button>
+                              </a>
                             </div>
                             <small class="text-muted" />
                           </div>
