@@ -4,6 +4,7 @@ import SEO from '../components/seo';
 import { StaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
 import { MDXRenderer } from 'gatsby-mdx';
+import { OutboundLink } from 'gatsby-plugin-google-analytics';
 
 const IndexPage = () => (
   <Layout>
@@ -109,7 +110,7 @@ const IndexPage = () => (
                     <div class="col-md-6" key={doc.relativePath}>
                       <div class="card my-3 box-shadow">
                         <div class="card-image">
-                          <a href={href}>
+                          <OutboundLink href={href}>
                             {doc.image ? (
                               <Img
                                 fluid={doc.image.fluid}
@@ -122,11 +123,13 @@ const IndexPage = () => (
                                 alt="PDF preview"
                               />
                             )}
-                          </a>
+                          </OutboundLink>
                         </div>
                         <div class="card-body">
                           <h3>
-                            <a href={href}>{doc.name.replace(/_/g, ' ')}</a>
+                            <OutboundLink href={href}>
+                              {doc.name.replace(/_/g, ' ')}
+                            </OutboundLink>
                           </h3>
                           <p class="card-text">
                             {doc.mdx ? (
@@ -137,12 +140,12 @@ const IndexPage = () => (
                           </p>
                           <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                              <a
+                              <OutboundLink
                                 class="btn btn-sm btn-outline-secondary"
                                 href={href}
                               >
                                 Download
-                              </a>
+                              </OutboundLink>
                             </div>
                             <small class="text-muted" />
                           </div>
