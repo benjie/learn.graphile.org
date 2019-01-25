@@ -1,10 +1,15 @@
+$blue: #43ac4d;
+$green: #428ac7;
+@import '~bootstrap/scss/bootstrap.scss';
+
 body {
-  background-image: url("./graphile-delaunay.png");
+  background-image: url('./graphile-delaunay.png');
   background-size: 1000px 1000px;
   background-repeat: repeat;
 }
 
-.jumbotron, .footer {
+.jumbotron,
+.footer {
   background-size: 100% 100%;
   background-position: 50% 0%;
   background-repeat: no-repeat;
@@ -15,14 +20,14 @@ body {
 }
 
 .jumbotron {
-  background-image: url("./header.svg");
+  background-image: url('./header.svg');
   margin-top: 0;
   margin-bottom: 0;
   padding-bottom: 4em;
 }
 
 .footer {
-  background-image: url("./footer.svg");
+  background-image: url('./footer.svg');
   padding-top: 3em;
   padding-bottom: 2em;
 }

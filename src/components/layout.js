@@ -1,5 +1,4 @@
-import 'bootstrap/dist/css/bootstrap.css';
-import './layout.css';
+import './layout.scss';
 
 const Layout = ({ children }) => children;
 
